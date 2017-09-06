@@ -12,8 +12,10 @@
 		287037B71F5FEF6C004ADF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287037B51F5FEF6C004ADF15 /* Main.storyboard */; };
 		287037B91F5FEF6C004ADF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 287037B81F5FEF6C004ADF15 /* Assets.xcassets */; };
 		287037BC1F5FEF6C004ADF15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287037BA1F5FEF6C004ADF15 /* LaunchScreen.storyboard */; };
-		287037C71F5FF064004ADF15 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 287037C51F5FF063004ADF15 /* art.scnassets */; };
-		287037C81F5FF064004ADF15 /* MyARKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 287037C61F5FF063004ADF15 /* MyARKitViewController.m */; };
+		CF46E9CF1F60286B008CADA6 /* ARKitTestDemo-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */; };
+		CF46E9D01F602872008CADA6 /* MyARKitViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */; };
+		CF46E9D11F602872008CADA6 /* MyARKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */; };
+		CF46E9D21F6029BE008CADA6 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CF46E9CC1F6026B2008CADA6 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +27,9 @@
 		287037BB1F5FEF6C004ADF15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		287037BD1F5FEF6C004ADF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARKitTestDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		287037C41F5FF061004ADF15 /* MyARKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyARKitViewController.h; path = "../../../ARSolarPlay-master/ARSolarPlay/MyARKitViewController.h"; sourceTree = "<group>"; };
-		287037C51F5FF063004ADF15 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "../../../ARSolarPlay-master/ARSolarPlay/art.scnassets"; sourceTree = "<group>"; };
-		287037C61F5FF063004ADF15 /* MyARKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyARKitViewController.m; path = "../../../ARSolarPlay-master/ARSolarPlay/MyARKitViewController.m"; sourceTree = "<group>"; };
+		CF46E9CC1F6026B2008CADA6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyARKitViewController.m; sourceTree = "<group>"; };
+		CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyARKitViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +68,9 @@
 				287037B81F5FEF6C004ADF15 /* Assets.xcassets */,
 				287037BA1F5FEF6C004ADF15 /* LaunchScreen.storyboard */,
 				287037BD1F5FEF6C004ADF15 /* Info.plist */,
-				287037C51F5FF063004ADF15 /* art.scnassets */,
-				287037C41F5FF061004ADF15 /* MyARKitViewController.h */,
-				287037C61F5FF063004ADF15 /* MyARKitViewController.m */,
+				CF46E9CC1F6026B2008CADA6 /* art.scnassets */,
+				CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */,
+				CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */,
 				287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */,
 			);
 			path = ARKitTestDemo;
@@ -133,8 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF46E9D21F6029BE008CADA6 /* art.scnassets in Resources */,
 				287037BC1F5FEF6C004ADF15 /* LaunchScreen.storyboard in Resources */,
-				287037C71F5FF064004ADF15 /* art.scnassets in Resources */,
 				287037B91F5FEF6C004ADF15 /* Assets.xcassets in Resources */,
 				287037B71F5FEF6C004ADF15 /* Main.storyboard in Resources */,
 			);
@@ -147,7 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				287037C81F5FF064004ADF15 /* MyARKitViewController.m in Sources */,
+				CF46E9D01F602872008CADA6 /* MyARKitViewController.h in Sources */,
+				CF46E9D11F602872008CADA6 /* MyARKitViewController.m in Sources */,
+				CF46E9CF1F60286B008CADA6 /* ARKitTestDemo-Bridging-Header.h in Sources */,
 				287037B41F5FEF6C004ADF15 /* ViewController.swift in Sources */,
 				287037B21F5FEF6C004ADF15 /* AppDelegate.swift in Sources */,
 			);
@@ -330,6 +334,7 @@
 				287037C21F5FEF6C004ADF15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ViewController: UITableViewController {
 
     override func viewDidLoad() {
@@ -24,9 +23,6 @@ class ViewController: UITableViewController {
         default:
             print("还没有跳转事件哦")
         }
-        
     }
-
-
 }
 

@@ -80,7 +80,7 @@
     _sunNode.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/sun.jpg";
     _sunNode.geometry.firstMaterial.multiply.intensity = 0.5;
     _sunNode.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant;
-    
+    //从上到下 从左到右的部分的一个动画的一个铺垫
     _sunNode.geometry.firstMaterial.multiply.wrapS =
     _sunNode.geometry.firstMaterial.diffuse.wrapS  =
     _sunNode.geometry.firstMaterial.multiply.wrapT =
@@ -88,6 +88,18 @@
     _sunNode.geometry.firstMaterial.locksAmbientWithDiffuse   = YES;
     //添加到根节点
     [_myCNView.scene.rootNode addChildNode:_sunNode];
+    
+    //添加文字提示，设置字体样式
+    SCNText *textGeo = [SCNText textWithString:@"银河系" extrusionDepth:0.8];
+    textGeo.font = [UIFont systemFontOfSize:10];
+    textGeo.chamferRadius = 0.5;
+    textGeo.flatness = 0.3;
+    textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
+    textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
+    SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
+    textNode.position = SCNVector3Make( 0,0.2, -1);
+    [_sunNode addChildNode:textNode];
+    
     [self addAnimationToSun];
     [self addLight];
 }
@@ -170,7 +182,7 @@
     SCNNode *saturnRotationNode = [SCNNode node];
     [saturnRotationNode addChildNode:_saturnGroupNode];
 }
-#pragma mark -设置太阳的动画
+#pragma mark -设置太阳的动画 从上到下 从左到右的部分的一个动画
 -(void)addAnimationToSun{
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contentsTransform"];
     animation.duration = 10.0;
@@ -291,6 +303,6 @@
 #pragma mark -ARSessionDelegate 会话位置更新
 -(void)session:(ARSession *)session didUpdateFrame:(ARFrame *)frame{
     //监听手机的移动，实现近距离查看太阳系细节，为了凸显效果变化值*3
-    [_sunNode setPosition:SCNVector3Make(-3 * frame.camera.transform.columns[3].x, -0.1 - 3 * frame.camera.transform.columns[3].y, -2 - 3 * frame.camera.transform.columns[3].z)];
+    [_sunNode setPosition:SCNVector3Make(-4 * frame.camera.transform.columns[3].x, -0.1 - 4 * frame.camera.transform.columns[3].y, -2 - 4 * frame.camera.transform.columns[3].z)];
 }
 @end
