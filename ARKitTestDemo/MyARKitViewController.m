@@ -32,20 +32,36 @@
  */
 //Node对象,设置按照行星的远近添加
 @property (strong,nonatomic) SCNNode *sunNode;//太阳
-@property (strong,nonatomic) SCNNode *mercuryNode;//添加的水星
-@property (strong,nonatomic) SCNNode *venusNode;//添加金星
+@property (strong,nonatomic) SCNNode *sunHaloNode;//设置灯光
+
+//@property (strong,nonatomic) SCNNode *mercuryNode;//添加的水星
+@property (strong,nonatomic) SCNNode *mercuryGroupNode;//水星组
+
+//@property (strong,nonatomic) SCNNode *venusNode;//添加金星
+@property (strong,nonatomic) SCNNode *venusGroupNode;//水星组
+
 @property (strong,nonatomic) SCNNode *earthNode;//地球
 @property (strong,nonatomic) SCNNode *moonNode;//月球
 @property (strong,nonatomic) SCNNode *earthGroupNode;//地球组
-@property (strong,nonatomic) SCNNode *marsNode;//火星
-@property (strong,nonatomic) SCNNode *jupiterNode;//木星
-@property (strong,nonatomic) SCNNode *saturnNode;//土星
+
+//@property (strong,nonatomic) SCNNode *marsNode;//火星
+@property (strong,nonatomic) SCNNode *marsGroupNode;//水星组
+
+//@property (strong,nonatomic) SCNNode *jupiterNode;//木星
+@property (strong,nonatomic) SCNNode *jupiterGroupNode;//水星组
+
+//@property (strong,nonatomic) SCNNode *saturnNode;//土星
 @property (strong,nonatomic) SCNNode *saturnLoopNode;//土星环
 @property (strong,nonatomic) SCNNode *saturnGroupNode;//土星组
-@property(nonatomic, strong) SCNNode *uranusNode; //天王星
-@property (strong,nonatomic) SCNNode *neptuneNode;//海王星
-@property (strong,nonatomic) SCNNode *plutoNode;//冥王星
-@property (strong,nonatomic) SCNNode *sunHaloNode;//设置灯光
+
+//@property(nonatomic, strong) SCNNode *uranusNode; //天王星
+@property (strong,nonatomic) SCNNode *uranusGroupNode;//水星组
+
+//@property (strong,nonatomic) SCNNode *neptuneNode;//海王星
+@property (strong,nonatomic) SCNNode *neptuneGroupNode;//水星组
+
+//@property (strong,nonatomic) SCNNode *plutoNode;//冥王星
+@property (strong,nonatomic) SCNNode *plutoGroupNode;//冥王组
 @end
 
 @implementation MyARKitViewController
@@ -90,15 +106,24 @@
     [_myCNView.scene.rootNode addChildNode:_sunNode];
     
     //添加文字提示，设置字体样式
-    SCNText *textGeo = [SCNText textWithString:@"银河系" extrusionDepth:0.8];
+    SCNText *textGeo = [SCNText textWithString:@"太阳" extrusionDepth:0.8];
     textGeo.font = [UIFont systemFontOfSize:10];
-    textGeo.chamferRadius = 0.5;
-    textGeo.flatness = 0.3;
     textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
     textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
     SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
-    textNode.position = SCNVector3Make( 0,0.2, -1);
+    textNode.position = SCNVector3Make( -0.01,0.26, 0);
+    textNode.scale = SCNVector3Make(0.01, 0.01, 0.01);
     [_sunNode addChildNode:textNode];
+    
+    //添加文字提示，设置字体样式
+    SCNText *univerGeo = [SCNText textWithString:@"太阳系" extrusionDepth:0.8];
+    univerGeo.font = [UIFont systemFontOfSize:10];
+    univerGeo.firstMaterial.diffuse.contents = [UIColor redColor];
+    univerGeo.firstMaterial.specular.contents = [UIColor whiteColor];
+    SCNNode *univerNode = [SCNNode nodeWithGeometry:univerGeo];
+    univerNode.position = SCNVector3Make( -2,1, -5);
+    univerNode.scale = SCNVector3Make(0.1, 0.1, 0.1);
+    [_sunNode addChildNode:univerNode];
     
     [self addAnimationToSun];
     [self addLight];
@@ -134,9 +159,15 @@
 
 #pragma mark -添加地球
 -(void)addEarthNodeToSCNView{
-    _earthNode = [self addPlateNodeWithRadius:0.05 xOff:0 diffuse:@"art.scnassets/earth/earth-diffuse-mini.jpg" duration:1];
+    _earthNode = [SCNNode node];//创建节点
+    _earthNode.geometry = [SCNSphere sphereWithRadius:0.05];//创建一个球型 半径为radius
+    _earthNode.position = SCNVector3Make(0, 0, 0);//设置初始位置
+    _earthNode.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/earth-diffuse-mini.jpg";//添加的纹理
     _earthNode.geometry.firstMaterial.emission.contents = @"art.scnassets/earth/earth-emissive-mini.jpg";
     _earthNode.geometry.firstMaterial.specular.contents = @"art.scnassets/earth/earth-specular-mini.jpg";
+    _earthNode.geometry.firstMaterial.shininess = 0.1;//指定接收器的亮度值。默认值是1.0
+    _earthNode.geometry.firstMaterial.specular.intensity = 0.5;//接收机的强度默认值是1.0
+    [_earthNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
     
     //地球添加云层
     SCNNode *cloudsNode = [SCNNode node];
@@ -147,7 +178,13 @@
     cloudsNode.geometry.firstMaterial.transparent.contents = @"art.scnassets/earth/cloudsTransparency.png";
     cloudsNode.geometry.firstMaterial.transparencyMode = SCNTransparencyModeRGBZero;
     //设置月亮
-    _moonNode = [self addPlateNodeWithRadius:0.01 xOff:0.1 diffuse:@"art.scnassets/earth/moon.jpg" duration:1.5];
+    _moonNode = [SCNNode node];//创建节点
+    _moonNode.geometry = [SCNSphere sphereWithRadius:0.01];//创建一个球型 半径为radius
+    _moonNode.position = SCNVector3Make(0.1, 0, 0);//设置初始位置
+    _moonNode.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/moon.jpg";//添加的纹理
+    _moonNode.geometry.firstMaterial.shininess = 0.1;//指定接收器的亮度值。默认值是1.0
+    _moonNode.geometry.firstMaterial.specular.intensity = 0.5;//接收机的强度默认值是1.0
+    [_moonNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1.5]]];
     //月球围绕地球转
     SCNNode *moonRotationNode = [SCNNode node];
     [moonRotationNode addChildNode:_moonNode];
@@ -156,16 +193,27 @@
     moonRotationAnimation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI*2)];
     moonRotationAnimation.repeatCount = FLT_MAX;
     [moonRotationNode addAnimation:moonRotationAnimation forKey:@"moon rotation around earth"];
+    
     //设置一个组别
     _earthGroupNode = [SCNNode node];
     _earthGroupNode.position = SCNVector3Make(0.8, 0, 0);
     [_earthGroupNode addChildNode:_earthNode];
     [_earthGroupNode addChildNode:moonRotationNode];
+    
+    //添加文字提示，设置字体样式
+    SCNText *textGeo = [SCNText textWithString:@"地球" extrusionDepth:0.8];
+    textGeo.font = [UIFont systemFontOfSize:10];
+    textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
+    textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
+    SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
+    textNode.position = SCNVector3Make( 0,0.06, 0);
+    textNode.scale = SCNVector3Make(0.002, 0.002, 0.002);
+    [_earthGroupNode addChildNode:textNode];
 }
 
 #pragma mark -添加土星
 -(void)addSaturnNodeToSCNView{
-    _saturnNode = [self addPlateNodeWithRadius:0.12 xOff:0 diffuse:@"art.scnassets/earth/saturn.jpg" duration:1];
+    _saturnGroupNode = [self addPlateNodeWithRadius:0.12 xOff:1.68 diffuse:@"art.scnassets/earth/saturn.jpg" duration:1 text:@"土星" position:0.13 scale:0.003];
     //添加土星环
     _saturnLoopNode = [SCNNode node];
     _saturnLoopNode.opacity = 0.4;
@@ -174,13 +222,7 @@
     _saturnLoopNode.geometry.firstMaterial.diffuse.mipFilter = SCNFilterModeLinear;
     _saturnLoopNode.rotation = SCNVector4Make(-0.5, -1, 0, M_PI_2);
     _saturnLoopNode.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
-    //土星组
-    _saturnGroupNode = [SCNNode node];
-    _saturnGroupNode.position = SCNVector3Make(1.68, 0, 0);
-    [_saturnGroupNode addChildNode:_saturnNode];
     [_saturnGroupNode addChildNode:_saturnLoopNode];
-    SCNNode *saturnRotationNode = [SCNNode node];
-    [saturnRotationNode addChildNode:_saturnGroupNode];
 }
 #pragma mark -设置太阳的动画 从上到下 从左到右的部分的一个动画
 -(void)addAnimationToSun{
@@ -198,34 +240,49 @@
     animation.repeatCount = FLT_MAX;
     [_sunNode.geometry.firstMaterial.multiply addAnimation:animation forKey:@"sun-texture2"];
 }
-#pragma mark -初始化节点
+#pragma mark -初始化节点 //设置position的位置比半径多0.01
 -(void)setUpAllMyNode{
     //水星
-    _mercuryNode = [self addPlateNodeWithRadius:0.02 xOff:0.4 diffuse:@"art.scnassets/earth/mercury.jpg" duration:1];
+    _mercuryGroupNode = [self addPlateNodeWithRadius:0.02 xOff:0.4 diffuse:@"art.scnassets/earth/mercury.jpg" duration:1 text:@"水星" position:0.03 scale:0.002];
     //金星
-    _venusNode = [self addPlateNodeWithRadius:0.04 xOff:0.6 diffuse:@"art.scnassets/earth/venus.jpg" duration:1];
+    _venusGroupNode = [self addPlateNodeWithRadius:0.04 xOff:0.6 diffuse:@"art.scnassets/earth/venus.jpg" duration:1 text:@"金星" position:0.05 scale:0.002];
     //火星
-    _marsNode = [self addPlateNodeWithRadius:0.03 xOff:1.0 diffuse:@"art.scnassets/earth/mars.jpg" duration:1];
+    _marsGroupNode = [self addPlateNodeWithRadius:0.03 xOff:1.0 diffuse:@"art.scnassets/earth/mars.jpg" duration:1 text:@"火星" position:0.04 scale:0.002];
     //木星
-    _jupiterNode = [self addPlateNodeWithRadius:0.15 xOff:1.4 diffuse:@"art.scnassets/earth/jupiter.jpg" duration:1];
+    _jupiterGroupNode = [self addPlateNodeWithRadius:0.15 xOff:1.4 diffuse:@"art.scnassets/earth/jupiter.jpg" duration:1 text:@"木星" position:0.17 scale:0.003];
     //天王星
-    _uranusNode = [self addPlateNodeWithRadius:0.09 xOff:1.95 diffuse:@"art.scnassets/earth/uranus.jpg" duration:1];
+    _uranusGroupNode = [self addPlateNodeWithRadius:0.09 xOff:1.95 diffuse:@"art.scnassets/earth/uranus.jpg" duration:1 text:@"天王星" position:0.1 scale:0.002];
     //海王星
-    _neptuneNode = [self addPlateNodeWithRadius:0.08 xOff:2.14 diffuse:@"art.scnassets/earth/neptune.jpg" duration:1];
+    _neptuneGroupNode = [self addPlateNodeWithRadius:0.08 xOff:2.14 diffuse:@"art.scnassets/earth/neptune.jpg" duration:1 text:@"海王星" position:0.09 scale:0.002];
     //冥王星
-    _plutoNode = [self addPlateNodeWithRadius:0.04 xOff:2.319 diffuse:@"art.scnassets/earth/pluto.jpg" duration:1];
+    _plutoGroupNode = [self addPlateNodeWithRadius:0.04 xOff:2.319 diffuse:@"art.scnassets/earth/pluto.jpg" duration:1 text:@"冥王星" position:0.05 scale:0.002];
 }
 
 #pragma mark -初始化各个节点 并设置部分属性
--(SCNNode*)addPlateNodeWithRadius:(CGFloat)radius xOff:(CGFloat)x diffuse:(id)content duration:(CGFloat)duration{
+-(SCNNode*)addPlateNodeWithRadius:(CGFloat)radius xOff:(CGFloat)x diffuse:(id)content duration:(CGFloat)duration text:(NSString*)text position:(CGFloat)position scale:(CGFloat)scale{
+    //创建组
+    SCNNode *groupNode = [SCNNode node];
+    groupNode.position = SCNVector3Make(x, 0, 0);
+    //创建组中的节点
     SCNNode *node = [SCNNode node];//创建节点
     node.geometry = [SCNSphere sphereWithRadius:radius];//创建一个球型 半径为radius
-    node.position = SCNVector3Make(x, 0, 0);//设置初始位置
+    node.position = SCNVector3Make(0, 0, 0);//设置初始位置
     node.geometry.firstMaterial.diffuse.contents = content;//添加的纹理
     node.geometry.firstMaterial.shininess = 0.1;//指定接收器的亮度值。默认值是1.0
     node.geometry.firstMaterial.specular.intensity = 0.5;//接收机的强度默认值是1.0
-    [node runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:duration]]];//旋转动画
-    return node;
+    [node runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:duration]]];//自转旋转动画
+    [groupNode addChildNode:node];
+    
+    //添加文字
+    SCNText *textGeo = [SCNText textWithString:text extrusionDepth:0.8];
+    textGeo.font = [UIFont systemFontOfSize:10];
+    textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
+    textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
+    SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
+    textNode.position = SCNVector3Make( 0,position, 0);
+    textNode.scale = SCNVector3Make(scale, scale, scale);
+    [groupNode addChildNode:textNode];
+    return groupNode;
 }
 
 #pragma mark -添加围绕太阳旋转动画
@@ -234,7 +291,6 @@
         // 围绕太阳旋转
         SCNNode *rotationNode = [SCNNode node];
         [rotationNode addChildNode:obj];
-        [_sunNode addChildNode:rotationNode];
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
         animation.duration = [_animationDurationArr[idx] floatValue];
         animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
@@ -271,7 +327,7 @@
     [self addSaturnNodeToSCNView];
     [self setUpAllMyNode];
     //保证每个节点都被初始化
-    _allPlateArr = @[_mercuryNode,_venusNode,_earthGroupNode,_marsNode,_jupiterNode,_saturnGroupNode,_uranusNode,_neptuneNode,_plutoNode];
+    _allPlateArr = @[_mercuryGroupNode,_venusGroupNode,_earthGroupNode,_marsGroupNode,_jupiterGroupNode,_saturnGroupNode,_uranusGroupNode,_neptuneGroupNode,_plutoGroupNode];
     [self addTrackNodeToSCNView];//添加轨迹图
     [self addAnimationToNode];//添加动画
     return _myCNView;

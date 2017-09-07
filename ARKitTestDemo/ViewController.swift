@@ -7,17 +7,28 @@
 //
 
 import UIKit
-
+import ARKit
 class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
         case 0:
+            guard ARWorldTrackingSessionConfiguration.isSupported else{
+                let alertView = UIAlertController.init(title: "ARKit is not available on this device.", message: "This app requires world tracking, which is available only on iOS devices with the A9 processor or later.", preferredStyle: .alert)
+                let cancelAc = UIAlertAction.init(title: "取消", style:.cancel, handler: nil)
+                let confirmAc = UIAlertAction.init(title: "确定", style: .default, handler: { (alert) in
+                    print("开始点击了")
+                })
+                alertView.addAction(cancelAc);
+                alertView.addAction(confirmAc);
+                self.present(alertView, animated: true, completion: nil)
+                return;
+            }
             let plateVC = MyARKitViewController.init()
             self.navigationController?.pushViewController(plateVC, animated: true)
         default:
