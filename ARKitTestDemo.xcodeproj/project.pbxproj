@@ -12,9 +12,8 @@
 		287037B71F5FEF6C004ADF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287037B51F5FEF6C004ADF15 /* Main.storyboard */; };
 		287037B91F5FEF6C004ADF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 287037B81F5FEF6C004ADF15 /* Assets.xcassets */; };
 		287037BC1F5FEF6C004ADF15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287037BA1F5FEF6C004ADF15 /* LaunchScreen.storyboard */; };
+		28B600771F627DD6003883B7 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B600761F627DD6003883B7 /* LineViewController.swift */; };
 		CF46E9CF1F60286B008CADA6 /* ARKitTestDemo-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */; };
-		CF46E9D01F602872008CADA6 /* MyARKitViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */; };
-		CF46E9D11F602872008CADA6 /* MyARKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */; };
 		CF46E9D21F6029BE008CADA6 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CF46E9CC1F6026B2008CADA6 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
@@ -27,9 +26,10 @@
 		287037BB1F5FEF6C004ADF15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		287037BD1F5FEF6C004ADF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARKitTestDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		28B600731F627D68003883B7 /* MyARKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyARKitViewController.m; sourceTree = "<group>"; };
+		28B600741F627D68003883B7 /* MyARKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyARKitViewController.h; sourceTree = "<group>"; };
+		28B600761F627DD6003883B7 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
 		CF46E9CC1F6026B2008CADA6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyARKitViewController.m; sourceTree = "<group>"; };
-		CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyARKitViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,16 +64,33 @@
 			children = (
 				287037B11F5FEF6C004ADF15 /* AppDelegate.swift */,
 				287037B31F5FEF6C004ADF15 /* ViewController.swift */,
+				28B600751F627D77003883B7 /* TapeMeasure(卷尺) */,
+				28B600721F627CE2003883B7 /* SolarSystem(太阳系) */,
 				287037B51F5FEF6C004ADF15 /* Main.storyboard */,
 				287037B81F5FEF6C004ADF15 /* Assets.xcassets */,
 				287037BA1F5FEF6C004ADF15 /* LaunchScreen.storyboard */,
 				287037BD1F5FEF6C004ADF15 /* Info.plist */,
 				CF46E9CC1F6026B2008CADA6 /* art.scnassets */,
-				CF46E9CE1F6026B2008CADA6 /* MyARKitViewController.h */,
-				CF46E9CD1F6026B2008CADA6 /* MyARKitViewController.m */,
 				287037C31F5FF060004ADF15 /* ARKitTestDemo-Bridging-Header.h */,
 			);
 			path = ARKitTestDemo;
+			sourceTree = "<group>";
+		};
+		28B600721F627CE2003883B7 /* SolarSystem(太阳系) */ = {
+			isa = PBXGroup;
+			children = (
+				28B600741F627D68003883B7 /* MyARKitViewController.h */,
+				28B600731F627D68003883B7 /* MyARKitViewController.m */,
+			);
+			path = "SolarSystem(太阳系)";
+			sourceTree = "<group>";
+		};
+		28B600751F627D77003883B7 /* TapeMeasure(卷尺) */ = {
+			isa = PBXGroup;
+			children = (
+				28B600761F627DD6003883B7 /* LineViewController.swift */,
+			);
+			path = "TapeMeasure(卷尺)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,10 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF46E9D01F602872008CADA6 /* MyARKitViewController.h in Sources */,
-				CF46E9D11F602872008CADA6 /* MyARKitViewController.m in Sources */,
 				CF46E9CF1F60286B008CADA6 /* ARKitTestDemo-Bridging-Header.h in Sources */,
 				287037B41F5FEF6C004ADF15 /* ViewController.swift in Sources */,
+				28B600771F627DD6003883B7 /* LineViewController.swift in Sources */,
 				287037B21F5FEF6C004ADF15 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
