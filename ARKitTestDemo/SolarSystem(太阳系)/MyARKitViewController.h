@@ -6,8 +6,7 @@
 //  Copyright © 2017年 alexyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface MyARKitViewController : UIViewController
+#import "ZJBaseViewController.h"
+@interface MyARKitViewController : ZJBaseViewController
 
 @end

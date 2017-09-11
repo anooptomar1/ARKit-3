@@ -10,6 +10,7 @@
 #import <ARKit/ARKit.h>
 #import <SceneKit/SceneKit.h>
 
+
 @interface MyARKitViewController ()<ARSCNViewDelegate,ARSessionDelegate>
 //轨迹图距离数组
 @property (strong,nonatomic) NSArray *trackNumArr;
@@ -71,11 +72,13 @@
     [self.view addSubview:self.myCNView];
     self.myCNView.delegate = self;
     [self.arSession runWithConfiguration:self.arSessionConfiguration];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.arSession pause];
+    
 }
 
 - (void)viewDidLoad {
@@ -205,9 +208,17 @@
     textGeo.font = [UIFont systemFontOfSize:10];
     textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
     textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
-    SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
+    
+    SCNNode *tempNode = [SCNNode nodeWithGeometry:textGeo];
+    tempNode.eulerAngles = SCNVector3Make(0,M_PI,0);
+    tempNode.scale = SCNVector3Make(0.002, 0.002, 0.002);;
+    
+    SCNNode *textNode = [SCNNode node];
+    [textNode addChildNode:tempNode];
+    SCNLookAtConstraint *cons = [SCNLookAtConstraint lookAtConstraintWithTarget:_myCNView.pointOfView];
+    cons.gimbalLockEnabled = YES;
+    textNode.constraints = @[cons];
     textNode.position = SCNVector3Make( 0,0.06, 0);
-    textNode.scale = SCNVector3Make(0.002, 0.002, 0.002);
     [_earthGroupNode addChildNode:textNode];
 }
 
@@ -278,10 +289,20 @@
     textGeo.font = [UIFont systemFontOfSize:10];
     textGeo.firstMaterial.diffuse.contents = [UIColor redColor];
     textGeo.firstMaterial.specular.contents = [UIColor whiteColor];
-    SCNNode *textNode = [SCNNode nodeWithGeometry:textGeo];
+    
+    SCNNode *tempNode = [SCNNode nodeWithGeometry:textGeo];
+    tempNode.eulerAngles = SCNVector3Make(0,M_PI,0);
+    tempNode.scale = SCNVector3Make(scale, scale, scale);
+    
+    SCNNode *textNode = [SCNNode node];
+    [textNode addChildNode:tempNode];
+    SCNLookAtConstraint *cons = [SCNLookAtConstraint lookAtConstraintWithTarget:_myCNView.pointOfView];
+    cons.gimbalLockEnabled = YES;
+    textNode.constraints = @[cons];
     textNode.position = SCNVector3Make( 0,position, 0);
-    textNode.scale = SCNVector3Make(scale, scale, scale);
     [groupNode addChildNode:textNode];
+    
+    
     return groupNode;
 }
 
