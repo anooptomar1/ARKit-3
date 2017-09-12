@@ -10,4 +10,7 @@
 
 @interface ZJBaseViewController : UIViewController
 
+@property (assign,nonatomic) CGFloat kViewWidth;
+@property (assign,nonatomic) CGFloat kViewHeight;
+
 @end

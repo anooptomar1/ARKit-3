@@ -9,10 +9,6 @@
 import UIKit
 import ARKit
 
-
-let kViewWidth = UIScreen.main.bounds.size.width
-let kViewHeight = UIScreen.main.bounds.size.height
-
 class LineViewController: ZJBaseViewController,ARSCNViewDelegate {
     
     var mySenceView = ARSCNView()
@@ -60,6 +56,7 @@ class LineViewController: ZJBaseViewController,ARSCNViewDelegate {
     
     //添加控件
     func addLabelInfo() {
+        
         //显示指示符
         infoLabel = UILabel.init(frame: CGRect.init(x: 20, y: 60, width: kViewWidth-40, height: 30))
         infoLabel.textColor = UIColor.white

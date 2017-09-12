@@ -33,6 +33,9 @@ class ViewController: UITableViewController {
         case 1:
             let tapeVC = LineViewController.init()
             self.navigationController?.pushViewController(tapeVC, animated: true)
+        case 2:
+            let tapeVC = DoorViewController.init()
+            self.navigationController?.pushViewController(tapeVC, animated: true)
         default:
             print("还没有跳转事件哦")
         }

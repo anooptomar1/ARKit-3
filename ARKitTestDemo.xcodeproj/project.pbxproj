@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2847C3E41F67A3A30048F6D8 /* DoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847C3E31F67A3A30048F6D8 /* DoorViewController.swift */; };
 		287037B21F5FEF6C004ADF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287037B11F5FEF6C004ADF15 /* AppDelegate.swift */; };
 		287037B41F5FEF6C004ADF15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287037B31F5FEF6C004ADF15 /* ViewController.swift */; };
 		287037B71F5FEF6C004ADF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287037B51F5FEF6C004ADF15 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2847C3E31F67A3A30048F6D8 /* DoorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorViewController.swift; sourceTree = "<group>"; };
 		287037AE1F5FEF6C004ADF15 /* ARKitTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		287037B11F5FEF6C004ADF15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		287037B31F5FEF6C004ADF15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2847C3E21F67A3600048F6D8 /* Door(任意门) */ = {
+			isa = PBXGroup;
+			children = (
+				2847C3E31F67A3A30048F6D8 /* DoorViewController.swift */,
+			);
+			path = "Door(任意门)";
+			sourceTree = "<group>";
+		};
 		287037A51F5FEF6C004ADF15 = {
 			isa = PBXGroup;
 			children = (
@@ -77,11 +87,12 @@
 		287037B01F5FEF6C004ADF15 /* ARKitTestDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2895F8291F6669EB003958FF /* BaseVC */,
 				287037B11F5FEF6C004ADF15 /* AppDelegate.swift */,
 				287037B31F5FEF6C004ADF15 /* ViewController.swift */,
+				2847C3E21F67A3600048F6D8 /* Door(任意门) */,
 				28B600751F627D77003883B7 /* TapeMeasure(卷尺) */,
 				28B600721F627CE2003883B7 /* SolarSystem(太阳系) */,
+				2895F8291F6669EB003958FF /* BaseVC */,
 				287037B51F5FEF6C004ADF15 /* Main.storyboard */,
 				287037B81F5FEF6C004ADF15 /* Assets.xcassets */,
 				287037BA1F5FEF6C004ADF15 /* LaunchScreen.storyboard */,
@@ -199,6 +210,7 @@
 			files = (
 				2895F82C1F666A10003958FF /* ZJBaseViewController.m in Sources */,
 				28B600781F628983003883B7 /* MyARKitViewController.m in Sources */,
+				2847C3E41F67A3A30048F6D8 /* DoorViewController.swift in Sources */,
 				CF46E9CF1F60286B008CADA6 /* ARKitTestDemo-Bridging-Header.h in Sources */,
 				2895F8251F6662C3003958FF /* UIImage+Color.swift in Sources */,
 				2895F8211F661F6F003958FF /* SCNVector3+Extension.swift in Sources */,

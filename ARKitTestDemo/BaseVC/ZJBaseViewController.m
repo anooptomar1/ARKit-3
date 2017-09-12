@@ -9,6 +9,8 @@
 #import "ZJBaseViewController.h"
 #import "UIImage+Color.h"
 
+
+
 @interface ZJBaseViewController ()
 
 @end
@@ -17,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _kViewWidth = [UIScreen mainScreen].bounds.size.width;
+    _kViewHeight = [UIScreen mainScreen].bounds.size.height;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
