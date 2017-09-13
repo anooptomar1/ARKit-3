@@ -301,8 +301,6 @@
     textNode.constraints = @[cons];
     textNode.position = SCNVector3Make( 0,position, 0);
     [groupNode addChildNode:textNode];
-    
-    
     return groupNode;
 }
 
