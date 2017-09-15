@@ -13,7 +13,7 @@ class LineViewController: ZJBaseViewController,ARSCNViewDelegate {
     
     var mySenceView = ARSCNView()
     var mySession = ARSession()
-    var configuration = ARWorldTrackingSessionConfiguration()
+    var configuration = ARWorldTrackingConfiguration()
     //添加指示显示
     var infoLabel:UILabel!
     var resetBtn:UIButton!

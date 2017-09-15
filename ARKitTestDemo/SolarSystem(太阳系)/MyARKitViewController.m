@@ -25,7 +25,7 @@
 //AR会话，负责管理相机追踪配置及3D相机坐标
 @property (strong,nonatomic) ARSession *arSession;
 //会话追踪配置
-@property (nonatomic,strong) ARSessionConfiguration *arSessionConfiguration;
+@property (nonatomic,strong) ARConfiguration *arConfiguration;
 
 #pragma mark -添加节点对象
 /*
@@ -361,18 +361,18 @@
     return _arSession;
 }
 
--(ARSessionConfiguration *)arSessionConfiguration{
-    if (_arSessionConfiguration != nil) {
-        return _arSessionConfiguration;
+-(ARConfiguration *)arSessionConfiguration{
+    if (_arConfiguration != nil) {
+        return _arConfiguration;
     }
     //1.创建世界追踪会话配置（使用ARWorldTrackingSessionConfiguration效果更加好），需要A9芯片支持
-    ARWorldTrackingSessionConfiguration *configuration = [[ARWorldTrackingSessionConfiguration alloc]init];
+    ARWorldTrackingConfiguration *configuration = [[ARWorldTrackingConfiguration alloc]init];
     //2.设置追踪方向（追踪平面，后面会用到）
     configuration.planeDetection = ARPlaneDetectionHorizontal;
     //3.自适应灯光（相机从暗到强光快速过渡效果会平缓一些）
     configuration.lightEstimationEnabled = YES;
-    _arSessionConfiguration = configuration;
-    return _arSessionConfiguration;
+    _arConfiguration = configuration;
+    return _arConfiguration;
 }
 
 #pragma mark -ARSessionDelegate 会话位置更新

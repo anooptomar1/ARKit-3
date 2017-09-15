@@ -14,7 +14,8 @@ class DoorViewController: ZJBaseViewController,ARSCNViewDelegate {
     var myScene:ARSCNView!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let config = ARWorldTrackingSessionConfiguration()
+        
+        let config = ARWorldTrackingConfiguration()
         // 明确表示需要追踪水平面。设置后 scene 被检测到时就会调用 ARSCNViewDelegate 方法
         config.planeDetection = .horizontal
         myScene.session.run(config)
